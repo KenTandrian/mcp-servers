@@ -3,7 +3,7 @@ import { textResult, withErrorHandling } from '@mcp-servers/core';
 import { z } from 'zod';
 import { gqlRequest, tokopediaCache } from '../gql.js';
 
-const SEARCH_QUERY = `
+export const SEARCH_QUERY = `
 query SearchProductV5Query($params: String!) {
   searchProductV5(params: $params) {
     header {
@@ -93,7 +93,7 @@ query SearchProductV5Query($params: String!) {
 }
 `;
 
-interface SearchProduct {
+export interface SearchProduct {
   id: string;
   name: string;
   url: string;
@@ -113,7 +113,7 @@ interface SearchProduct {
   rating: string;
 }
 
-interface SearchResponse {
+export interface SearchResponse {
   data: {
     searchProductV5: {
       header: {
@@ -128,13 +128,18 @@ interface SearchResponse {
   };
 }
 
-function buildSearchParams(input: {
+/**
+ * Build URL-encoded query parameters for `SearchProductV5Query`.
+ */
+export function buildSearchParams(input: {
   query: string;
   page: number;
   rows: number;
   orderBy?: number;
   priceMin?: number;
   priceMax?: number;
+  categoryId?: string;
+  source?: string;
   filters?: Record<string, string>;
 }): string {
   const start = (input.page - 1) * input.rows;
@@ -153,7 +158,7 @@ function buildSearchParams(input: {
     safe_search: 'false',
     scheme: 'https',
     show_adult: 'false',
-    source: 'search',
+    source: input.source ?? 'search',
     srp_component_id: '02.01.00.00',
     st: 'product',
     start: String(start),
@@ -161,6 +166,10 @@ function buildSearchParams(input: {
     unique_id: Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2),
     variants: '',
   });
+
+  if (input.categoryId) {
+    params.set('sc', input.categoryId);
+  }
 
   if (input.filters) {
     for (const [k, v] of Object.entries(input.filters)) {
@@ -171,6 +180,45 @@ function buildSearchParams(input: {
   }
 
   return params.toString();
+}
+
+/**
+ * Format `SearchProductV5Query` results into readable markdown.
+ */
+export function formatSearchResults(
+  title: string,
+  totalData: number,
+  products: SearchProduct[],
+  page: number,
+  rows: number,
+): string {
+  const totalPages = Math.ceil(totalData / rows);
+  const lines: string[] = [
+    title,
+    `${totalData.toLocaleString('id-ID')} total products | Page ${page}/${totalPages}`,
+    '',
+  ];
+
+  products.forEach((p, idx) => {
+    const discount = p.price.discountPercentage > 0 ? ` (-${p.price.discountPercentage}%)` : '';
+    const badge =
+      p.shop.tier === 3
+        ? ' [Power Store]'
+        : p.shop.tier === 2
+          ? ' [Official Store]'
+          : '';
+    const freeShip = p.freeShipping?.url ? ' | Free shipping' : '';
+
+    lines.push(`${(page - 1) * rows + idx + 1}. **${p.name}**`);
+    lines.push(`   Price: ${p.price.text}${discount}${freeShip}`);
+    lines.push(
+      `   Rating: ${p.rating || 'N/A'} | Shop: ${p.shop.name}${badge} (${p.shop.city}) | ID: ${p.id}`,
+    );
+    lines.push(`   URL: ${p.url}`);
+    if (idx < products.length - 1) lines.push('');
+  });
+
+  return lines.join('\n');
 }
 
 export function registerSearchTools(server: McpServer): void {
@@ -219,39 +267,18 @@ export function registerSearchTools(server: McpServer): void {
           }
 
           const totalData = header.totalData;
-          const totalPages = Math.ceil(totalData / params.rows);
           const kw =
             header.keywordProcess && header.keywordProcess !== '0'
               ? header.keywordProcess
               : params.query;
 
-          const lines: string[] = [
+          return formatSearchResults(
             `Search Results for "${kw}"`,
-            `${totalData.toLocaleString('id-ID')} total products | Page ${params.page}/${totalPages}`,
-            '',
-          ];
-
-          products.forEach((p, idx) => {
-            const discount =
-              p.price.discountPercentage > 0 ? ` (-${p.price.discountPercentage}%)` : '';
-            const badge =
-              p.shop.tier === 3
-                ? ' [Power Store]'
-                : p.shop.tier === 2
-                  ? ' [Official Store]'
-                  : '';
-            const freeShip = p.freeShipping?.url ? ' | Free shipping' : '';
-
-            lines.push(`${(params.page - 1) * params.rows + idx + 1}. **${p.name}**`);
-            lines.push(`   Price: ${p.price.text}${discount}${freeShip}`);
-            lines.push(
-              `   Rating: ${p.rating || 'N/A'} | Shop: ${p.shop.name}${badge} (${p.shop.city}) | ID: ${p.id}`,
-            );
-            lines.push(`   URL: ${p.url}`);
-            if (idx < products.length - 1) lines.push('');
-          });
-
-          return lines.join('\n');
+            totalData,
+            products,
+            params.page,
+            params.rows,
+          );
         });
 
         return textResult(text);

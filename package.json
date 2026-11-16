@@ -9,12 +9,15 @@
   "scripts": {
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
+    "lint": "biome check .",
+    "format": "biome format --write .",
     "test:unit": "pnpm -r test:unit",
     "test:smoke": "pnpm --filter @mcp-servers/tokopedia test:smoke",
     "test": "pnpm test:unit",
     "clean": "pnpm -r clean"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.6.8",
     "@types/node": "^22.15.0",
     "tsx": "^4.19.0",
     "typescript": "^5.8.0"

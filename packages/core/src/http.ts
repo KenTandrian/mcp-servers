@@ -43,12 +43,7 @@ export async function fetchWithRetry(
   init: RequestInit,
   options: RetryOptions = {},
 ): Promise<Response> {
-  const {
-    timeoutMs = 15_000,
-    maxAttempts = 3,
-    baseBackoffMs = 300,
-    label = url,
-  } = options;
+  const { timeoutMs = 15_000, maxAttempts = 3, baseBackoffMs = 300, label = url } = options;
 
   let lastError: Error | undefined;
   let retryAfter: string | null = null;

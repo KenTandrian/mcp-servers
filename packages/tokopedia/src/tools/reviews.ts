@@ -1,5 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { textResult, withErrorHandling } from '@mcp-servers/core';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { gqlRequest, tokopediaCache } from '../gql.js';
 
@@ -215,9 +215,7 @@ export function formatProductRatingSummary(result: RatingTopicsResult): string {
   if (rating.detail && rating.detail.length > 0) {
     lines.push('', 'Breakdown:');
     for (const d of rating.detail) {
-      lines.push(
-        `- ${d.rate} star: ${d.formattedTotalReviews} (${d.percentageFloat}%)`,
-      );
+      lines.push(`- ${d.rate} star: ${d.formattedTotalReviews} (${d.percentageFloat}%)`);
     }
   }
 

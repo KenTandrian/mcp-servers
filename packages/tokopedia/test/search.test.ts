@@ -40,7 +40,12 @@ describe('search parameter builder and formatter', () => {
           name: 'Keychron K2',
           url: 'https://www.tokopedia.com/shop/keychron-k2',
           shop: { id: '1', name: 'Keychron ID', city: 'Jakarta', tier: 2 },
-          price: { text: 'Rp1.200.000', number: 1200000, original: 'Rp1.500.000', discountPercentage: 20 },
+          price: {
+            text: 'Rp1.200.000',
+            number: 1200000,
+            original: 'Rp1.500.000',
+            discountPercentage: 20,
+          },
           freeShipping: { url: 'https://example.com/fs.png' },
           rating: '4.9',
         },

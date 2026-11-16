@@ -1,5 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { textResult, withErrorHandling } from '@mcp-servers/core';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { gqlRequest, tokopediaCache } from '../gql.js';
 
@@ -202,11 +202,7 @@ export function formatSearchResults(
   products.forEach((p, idx) => {
     const discount = p.price.discountPercentage > 0 ? ` (-${p.price.discountPercentage}%)` : '';
     const badge =
-      p.shop.tier === 3
-        ? ' [Power Store]'
-        : p.shop.tier === 2
-          ? ' [Official Store]'
-          : '';
+      p.shop.tier === 3 ? ' [Power Store]' : p.shop.tier === 2 ? ' [Official Store]' : '';
     const freeShip = p.freeShipping?.url ? ' | Free shipping' : '';
 
     lines.push(`${(page - 1) * rows + idx + 1}. **${p.name}**`);
@@ -232,7 +228,9 @@ export function registerSearchTools(server: McpServer): void {
       orderBy: z
         .union([z.literal(23), z.literal(3), z.literal(4), z.literal(5), z.literal(8)])
         .optional()
-        .describe('Sort: 23=relevance, 3=price low->high, 4=price high->low, 5=newest, 8=most sold'),
+        .describe(
+          'Sort: 23=relevance, 3=price low->high, 4=price high->low, 5=newest, 8=most sold',
+        ),
       priceMin: z.number().optional().describe('Minimum price in IDR'),
       priceMax: z.number().optional().describe('Maximum price in IDR'),
       filters: z

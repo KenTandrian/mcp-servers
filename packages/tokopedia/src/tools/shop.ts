@@ -1,5 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { textResult, withErrorHandling } from '@mcp-servers/core';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { gqlRequest, tokopediaCache } from '../gql.js';
 
@@ -318,10 +318,7 @@ export function registerShopTools(server: McpServer): void {
     'Get detailed information about a Tokopedia shop including stats, location, open status, and Gold/Official Merchant badges. Accepts a shop domain (slug) or numeric shop ID.',
     {
       shopId: z.number().int().positive().optional().describe('Numeric shop ID'),
-      shopDomain: z
-        .string()
-        .optional()
-        .describe('Shop domain/slug from the URL, e.g. "logitech"'),
+      shopDomain: z.string().optional().describe('Shop domain/slug from the URL, e.g. "logitech"'),
     },
     async ({ shopId, shopDomain }) =>
       withErrorHandling(async () => {
@@ -346,10 +343,7 @@ export function registerShopTools(server: McpServer): void {
     'get_shop_products',
     "Browse a shop's product listings on Tokopedia. Accepts a shop domain (slug) or numeric shop ID. Returns product names, prices, ratings, and URLs.",
     {
-      shopDomain: z
-        .string()
-        .optional()
-        .describe('Shop domain/slug from the URL, e.g. "logitech"'),
+      shopDomain: z.string().optional().describe('Shop domain/slug from the URL, e.g. "logitech"'),
       shopId: z
         .number()
         .int()
@@ -368,7 +362,9 @@ export function registerShopTools(server: McpServer): void {
       sort: z
         .union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)])
         .optional()
-        .describe('Sort: 1=default, 2=newest, 3=best selling, 4=price low->high, 5=price high->low'),
+        .describe(
+          'Sort: 1=default, 2=newest, 3=best selling, 4=price low->high, 5=price high->low',
+        ),
     },
     async ({ shopDomain, shopId, page, perPage, keyword, sort }) =>
       withErrorHandling(async () => {

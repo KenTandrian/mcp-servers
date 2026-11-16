@@ -160,7 +160,7 @@ describe('tokopedia tool formatters', () => {
     );
 
     assert.match(tree, /- \*\*Elektronik\*\* \(ID: 10\)/);
-    assert.match(tree, /  - Audio \(ID: 101\)/);
+    assert.match(tree, / {2}- Audio \(ID: 101\)/);
     assert.doesNotMatch(tree, /Headphone/);
   });
 });

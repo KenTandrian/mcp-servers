@@ -1,4 +1,4 @@
-import { DEFAULT_USER_AGENT, HttpError, TtlCache, fetchWithRetry } from '@mcp-servers/core';
+import { DEFAULT_USER_AGENT, fetchWithRetry, HttpError, TtlCache } from '@mcp-servers/core';
 
 const TOKOPEDIA_GQL_URL = 'https://gql.tokopedia.com/graphql';
 

@@ -1,12 +1,12 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { textResult, withErrorHandling } from '@mcp-servers/core';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { gqlRequest, tokopediaCache } from '../gql.js';
 import {
-  SEARCH_QUERY,
-  type SearchResponse,
   buildSearchParams,
   formatSearchResults,
+  SEARCH_QUERY,
+  type SearchResponse,
 } from './search.js';
 
 const CATEGORY_ALL_LIST_QUERY = `query categoryAllList($categoryID: Int, $type: String) {
@@ -66,10 +66,7 @@ interface CategoryAllListResponse {
 /**
  * Format Tokopedia's category hierarchy into readable markdown.
  */
-export function formatCategoryTree(
-  categories: CategoryRoot[],
-  maxDepth = 2,
-): string {
+export function formatCategoryTree(categories: CategoryRoot[], maxDepth = 2): string {
   if (categories.length === 0) {
     return 'No categories found.';
   }
@@ -149,7 +146,9 @@ export function registerCategoryTools(server: McpServer): void {
       orderBy: z
         .union([z.literal(23), z.literal(3), z.literal(4), z.literal(5), z.literal(8)])
         .optional()
-        .describe('Sort: 23=relevance, 3=price low->high, 4=price high->low, 5=newest, 8=most sold'),
+        .describe(
+          'Sort: 23=relevance, 3=price low->high, 4=price high->low, 5=newest, 8=most sold',
+        ),
       priceMin: z.number().optional().describe('Minimum price in IDR'),
       priceMax: z.number().optional().describe('Maximum price in IDR'),
     },

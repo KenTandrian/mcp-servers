@@ -1,5 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { textResult, withErrorHandling } from '@mcp-servers/core';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { gqlRequest, tokopediaCache } from '../gql.js';
 
@@ -132,7 +132,8 @@ export function formatFiltersAndSorts(
 
     for (const o of shown) {
       const total = Number(o.totalData);
-      const count = Number.isFinite(total) && total > 0 ? ` (${total.toLocaleString('id-ID')} products)` : '';
+      const count =
+        Number.isFinite(total) && total > 0 ? ` (${total.toLocaleString('id-ID')} products)` : '';
       const badge = o.isNew ? ' [New]' : o.isPopular ? ' [Popular]' : '';
       lines.push(`- ${o.name}${badge} -> \`"${o.key}": "${o.value}"\`${count}`);
 

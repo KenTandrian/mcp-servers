@@ -18,11 +18,7 @@ export async function withErrorHandling(fn: () => Promise<McpToolResult>): Promi
     return await fn();
   } catch (err) {
     const message =
-      err instanceof HttpError
-        ? err.message
-        : err instanceof Error
-          ? err.message
-          : String(err);
+      err instanceof HttpError ? err.message : err instanceof Error ? err.message : String(err);
 
     return {
       isError: true,

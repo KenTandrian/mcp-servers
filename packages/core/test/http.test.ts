@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { HttpError, fetchWithRetry } from '../src/http.js';
+import { fetchWithRetry, HttpError } from '../src/http.js';
 
 const originalFetch = globalThis.fetch;
 

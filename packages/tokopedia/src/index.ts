@@ -2,6 +2,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { registerFilterTools } from './tools/filters.js';
+import { registerReviewTools } from './tools/reviews.js';
 import { registerSearchTools } from './tools/search.js';
 import { registerShopTools } from './tools/shop.js';
 
@@ -13,6 +14,7 @@ const server = new McpServer({
 registerSearchTools(server);
 registerFilterTools(server);
 registerShopTools(server);
+registerReviewTools(server);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);

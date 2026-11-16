@@ -1,0 +1,19 @@
+{
+  "name": "@mcp-servers/core",
+  "version": "0.1.0",
+  "description": "Shared HTTP, caching, and MCP tool utilities for mcp-servers",
+  "type": "module",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\""
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@mcp-servers/tokopedia",
+  "version": "0.1.0",
+  "description": "Tokopedia MCP server powered by Tokopedia's public GraphQL gateway",
+  "type": "module",
+  "bin": {
+    "tokopedia-mcp": "./build/index.js"
+  },
+  "files": [
+    "build",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node build/index.js",
+    "typecheck": "tsc --noEmit",
+    "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@mcp-servers/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.25.0",
+    "zod": "^3.25.0"
+  }
+}

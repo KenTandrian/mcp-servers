@@ -2,6 +2,19 @@
   "name": "@mcp-servers/tokopedia",
   "version": "0.1.0",
   "description": "Tokopedia MCP server powered by Tokopedia's public GraphQL gateway",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KenTandrian/mcp-servers.git",
+    "directory": "packages/tokopedia"
+  },
+  "homepage": "https://github.com/KenTandrian/mcp-servers/tree/main/packages/tokopedia#readme",
+  "bugs": {
+    "url": "https://github.com/KenTandrian/mcp-servers/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "bin": {
     "tokopedia-mcp": "./build/index.js"

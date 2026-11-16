@@ -9,6 +9,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
+    "test:unit": "pnpm -r test:unit",
+    "test": "pnpm test:unit",
     "clean": "pnpm -r clean"
   },
   "devDependencies": {

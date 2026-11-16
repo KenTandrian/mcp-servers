@@ -16,6 +16,7 @@
     "start": "node build/index.js",
     "typecheck": "tsc --noEmit",
     "test:unit": "tsx --test test/*.test.ts",
+    "test:smoke": "tsx test/smoke.ts",
     "test": "pnpm test:unit",
     "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\""
   },

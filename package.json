@@ -10,6 +10,7 @@
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "test:unit": "pnpm -r test:unit",
+    "test:smoke": "pnpm --filter @mcp-servers/tokopedia test:smoke",
     "test": "pnpm test:unit",
     "clean": "pnpm -r clean"
   },

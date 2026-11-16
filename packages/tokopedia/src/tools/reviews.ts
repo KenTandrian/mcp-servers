@@ -65,6 +65,81 @@ const REVIEW_LIST_QUERY = `query productReviewList($productID: String!, $page: I
   }
 }`;
 
+const RATING_TOPICS_QUERY = `query productRatingAndTopics($productID: String!) {
+  productrevGetProductRatingAndTopics(productID: $productID) {
+    productID
+    rating {
+      positivePercentageFmt
+      ratingScore
+      totalRating
+      totalRatingWithImage
+      totalRatingTextAndImage
+      detail {
+        rate
+        totalReviews
+        formattedTotalReviews
+        percentageFloat
+        __typename
+      }
+      __typename
+    }
+    topics {
+      rating
+      ratingFmt
+      formatted
+      key
+      reviewCount
+      reviewCountFmt
+      show
+      __typename
+    }
+    availableFilters {
+      withAttachment
+      rating
+      topics
+      helpfulness
+      __typename
+    }
+    __typename
+  }
+}`;
+
+export interface RatingDetail {
+  rate: number;
+  totalReviews: number;
+  formattedTotalReviews: string;
+  percentageFloat: number;
+}
+
+export interface RatingTopic {
+  rating: number;
+  ratingFmt: string;
+  formatted: string;
+  key: string;
+  reviewCount: number;
+  reviewCountFmt: string;
+  show: boolean;
+}
+
+export interface RatingTopicsResult {
+  productID: string;
+  rating: {
+    positivePercentageFmt: string;
+    ratingScore: string;
+    totalRating: number;
+    totalRatingWithImage: number;
+    totalRatingTextAndImage: number;
+    detail: RatingDetail[];
+  } | null;
+  topics: RatingTopic[] | null;
+}
+
+interface RatingTopicsResponse {
+  data: {
+    productrevGetProductRatingAndTopics: RatingTopicsResult | null;
+  };
+}
+
 export interface ReviewItem {
   id: string;
   variantName: string;
@@ -112,6 +187,49 @@ const FILTER_MAP: Record<string, string> = {
 function truncateText(text: string, maxLen: number): string {
   if (text.length <= maxLen) return text;
   return `${text.slice(0, maxLen - 3)}...`;
+}
+
+/**
+ * Format product rating breakdown and review topics into readable markdown.
+ */
+export function formatProductRatingSummary(result: RatingTopicsResult): string {
+  const { rating, topics } = result;
+  if (!rating) {
+    return 'No rating summary available for this product.';
+  }
+
+  const lines: string[] = [
+    `Rating Summary (Product ID: ${result.productID})`,
+    `Score: ${rating.ratingScore} / 5.0 | ${rating.totalRating.toLocaleString('id-ID')} ratings`,
+  ];
+
+  if (rating.positivePercentageFmt) {
+    lines.push(rating.positivePercentageFmt);
+  }
+  if (rating.totalRatingWithImage > 0 || rating.totalRatingTextAndImage > 0) {
+    lines.push(
+      `With media: ${rating.totalRatingWithImage.toLocaleString('id-ID')} | With text & media: ${rating.totalRatingTextAndImage.toLocaleString('id-ID')}`,
+    );
+  }
+
+  if (rating.detail && rating.detail.length > 0) {
+    lines.push('', 'Breakdown:');
+    for (const d of rating.detail) {
+      lines.push(
+        `- ${d.rate} star: ${d.formattedTotalReviews} (${d.percentageFloat}%)`,
+      );
+    }
+  }
+
+  const visibleTopics = (topics ?? []).filter((t) => t.show);
+  if (visibleTopics.length > 0) {
+    lines.push('', 'Review Topics:');
+    for (const t of visibleTopics) {
+      lines.push(`- ${t.formatted}: ${t.ratingFmt}/5 (${t.reviewCountFmt} reviews)`);
+    }
+  }
+
+  return lines.join('\n');
 }
 
 /**
@@ -218,6 +336,32 @@ export function registerReviewTools(server: McpServer): void {
           }
 
           return formatProductReviews(result, currentPage, pageLimit, sortKey, filterKey);
+        });
+
+        return textResult(text);
+      }),
+  );
+
+  server.tool(
+    'get_product_rating_summary',
+    'Get rating score, star breakdown, and review topics for a Tokopedia product by its numeric product ID.',
+    {
+      productId: z.string().min(1).describe('Numeric product ID (from search_products `id` field)'),
+    },
+    async ({ productId }) =>
+      withErrorHandling(async () => {
+        const cacheKey = tokopediaCache.key('rating_summary', productId);
+        const text = await tokopediaCache.getOrSet(cacheKey, async () => {
+          const res = await gqlRequest<RatingTopicsResponse>(
+            'productRatingAndTopics',
+            RATING_TOPICS_QUERY,
+            { productID: productId },
+          );
+          const result = res.data?.productrevGetProductRatingAndTopics;
+          if (!result) {
+            return 'Could not load rating summary for this product.';
+          }
+          return formatProductRatingSummary(result);
         });
 
         return textResult(text);

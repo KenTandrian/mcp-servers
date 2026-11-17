@@ -35,6 +35,18 @@ importers:
 
   packages/core: {}
 
+  packages/id-news:
+    dependencies:
+      '@mcp-servers/core':
+        specifier: workspace:*
+        version: link:../core
+      '@modelcontextprotocol/sdk':
+        specifier: ^1.25.0
+        version: 1.32.2(zod@3.25.76)
+      zod:
+        specifier: ^3.25.0
+        version: 3.25.76
+
   packages/tokopedia:
     dependencies:
       '@mcp-servers/core':

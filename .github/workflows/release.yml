@@ -28,6 +28,22 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test:unit
 
-      - run: pnpm publish -r --access public --no-git-checks
-        env:
-          NPM_CONFIG_PROVENANCE: true
+      - name: Pack packages
+        run: |
+          mkdir -p "$RUNNER_TEMP/tarballs"
+          for dir in packages/*/; do
+            (cd "$dir" && pnpm pack --pack-destination "$RUNNER_TEMP/tarballs")
+          done
+
+      - name: Stage unpublished versions
+        working-directory: ${{ runner.temp }}/tarballs
+        run: |
+          for tgz in *.tgz; do
+            spec=$(tar -xOzf "$tgz" package/package.json | jq -r '.name + "@" + .version')
+            if [ -n "$(npm view "$spec" version 2>/dev/null)" ]; then
+              echo "Skipping $spec (already published)"
+              continue
+            fi
+            echo "Staging $spec"
+            npm stage publish "./$tgz" --access public --provenance
+          done

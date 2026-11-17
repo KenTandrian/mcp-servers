@@ -11,7 +11,30 @@ BMKG MCP server for Indonesian weather forecasts, earthquake alerts, and adminis
 | `get_weather_forecast` | 3-day, 3-hourly BMKG weather forecast by Indonesian `adm4` village code |
 | `list_regions` | Browse/filter Indonesian provinces, regencies, districts, and villages (`wilayah.id`) |
 
-## Running
+## Usage
+
+Requires Node.js 22 or later. No API key needed.
+
+Add to your MCP client config (e.g. Claude Desktop `claude_desktop_config.json`, Cursor `.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "bmkg": {
+      "command": "npx",
+      "args": ["-y", "@kentandrian/bmkg-mcp"]
+    }
+  }
+}
+```
+
+Or run it directly over stdio:
+
+```bash
+npx -y @kentandrian/bmkg-mcp
+```
+
+## Development
 
 ```bash
 pnpm --filter @kentandrian/bmkg-mcp start

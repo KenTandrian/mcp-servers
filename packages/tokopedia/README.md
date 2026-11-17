@@ -18,14 +18,31 @@ Tokopedia MCP server powered by Tokopedia's public GraphQL gateway (`gql.tokoped
 | `get_category_tree` | Retrieve Tokopedia's category hierarchy and category IDs |
 | `browse_category` | Browse products within a specific category ID (`sc` filter) |
 
-## Running
+## Usage
 
-```bash
-pnpm --filter @kentandrian/tokopedia-mcp start
+Requires Node.js 22 or later. No API key needed.
+
+Add to your MCP client config (e.g. Claude Desktop `claude_desktop_config.json`, Cursor `.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "tokopedia": {
+      "command": "npx",
+      "args": ["-y", "@kentandrian/tokopedia-mcp"]
+    }
+  }
+}
 ```
 
-Or via `npx` once published:
+Or run it directly over stdio:
 
 ```bash
 npx -y @kentandrian/tokopedia-mcp
+```
+
+## Development
+
+```bash
+pnpm --filter @kentandrian/tokopedia-mcp start
 ```

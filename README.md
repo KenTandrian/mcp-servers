@@ -8,6 +8,7 @@ A pnpm + TypeScript monorepo of Model Context Protocol (MCP) servers.
 - [`packages/tokopedia`](./packages/tokopedia) — Tokopedia MCP server powered by `gql.tokopedia.com` (search, filters, shop info/products, reviews, rating summary, categories).
 - [`packages/bmkg`](./packages/bmkg) — BMKG MCP server for Indonesian weather forecasts, earthquake alerts, and `wilayah.id` region code lookup.
 - [`packages/id-news`](./packages/id-news) — Indonesian news and tech digest MCP server (CNBC Indonesia, Antara News, Tempo).
+- [`packages/id-finance`](./packages/id-finance) — Indonesian finance MCP server (Bank Indonesia IDR exchange rates + Indodax/Pintu crypto prices).
 
 ## Development
 

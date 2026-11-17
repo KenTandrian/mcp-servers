@@ -2,6 +2,9 @@
 
 Tokopedia MCP server powered by Tokopedia's public GraphQL gateway (`gql.tokopedia.com`).
 
+> [!WARNING]
+> **Unofficial.** This package is not affiliated with or endorsed by Tokopedia. It uses an undocumented web gateway that may change or break without notice. Use responsibly and in accordance with Tokopedia's terms of service.
+
 ## Tools
 
 | Tool | Description |

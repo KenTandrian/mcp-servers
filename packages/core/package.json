@@ -1,6 +1,6 @@
 {
   "name": "@kentandrian/mcp-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared HTTP, caching, and MCP tool utilities for mcp-servers",
   "keywords": [
     "mcp",

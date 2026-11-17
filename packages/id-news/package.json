@@ -1,6 +1,6 @@
 {
   "name": "@kentandrian/id-news-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Indonesian news and tech digest MCP server powered by CNBC Indonesia, Antara, and Tempo RSS feeds",
   "keywords": [
     "mcp",

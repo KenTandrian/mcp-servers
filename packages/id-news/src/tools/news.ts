@@ -1,4 +1,4 @@
-import { textResult, withErrorHandling } from '@mcp-servers/core';
+import { textResult, withErrorHandling } from '@kentandrian/mcp-core';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { NEWS_FEEDS, type NewsCategory, type NewsSource, selectFeeds } from '../feeds.js';
@@ -73,7 +73,7 @@ export function formatNewsDigest(title: string, articles: NewsArticle[], limit: 
 export function registerNewsTools(server: McpServer): void {
   server.tool(
     'list_news_sources',
-    'List supported Indonesian news outlets and categories available in @mcp-servers/id-news.',
+    'List supported Indonesian news outlets and categories available in @kentandrian/id-news-mcp.',
     {},
     async () =>
       withErrorHandling(async () => {

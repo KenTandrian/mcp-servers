@@ -1,4 +1,4 @@
-# @mcp-servers/bmkg
+# @kentandrian/bmkg-mcp
 
 BMKG MCP server for Indonesian weather forecasts, earthquake alerts, and administrative region code lookup (`wilayah.id`).
 
@@ -14,5 +14,5 @@ BMKG MCP server for Indonesian weather forecasts, earthquake alerts, and adminis
 ## Running
 
 ```bash
-pnpm --filter @mcp-servers/bmkg start
+pnpm --filter @kentandrian/bmkg-mcp start
 ```

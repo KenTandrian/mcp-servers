@@ -23,7 +23,7 @@ importers:
 
   packages/bmkg:
     dependencies:
-      '@mcp-servers/core':
+      '@kentandrian/mcp-core':
         specifier: workspace:*
         version: link:../core
       '@modelcontextprotocol/sdk':
@@ -37,7 +37,7 @@ importers:
 
   packages/id-finance:
     dependencies:
-      '@mcp-servers/core':
+      '@kentandrian/mcp-core':
         specifier: workspace:*
         version: link:../core
       '@modelcontextprotocol/sdk':
@@ -49,7 +49,7 @@ importers:
 
   packages/id-news:
     dependencies:
-      '@mcp-servers/core':
+      '@kentandrian/mcp-core':
         specifier: workspace:*
         version: link:../core
       '@modelcontextprotocol/sdk':
@@ -61,7 +61,7 @@ importers:
 
   packages/tokopedia:
     dependencies:
-      '@mcp-servers/core':
+      '@kentandrian/mcp-core':
         specifier: workspace:*
         version: link:../core
       '@modelcontextprotocol/sdk':

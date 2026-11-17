@@ -1,4 +1,4 @@
-# @mcp-servers/id-news
+# @kentandrian/id-news-mcp
 
 Indonesian news and tech digest MCP server powered by public RSS feeds from CNBC Indonesia, Antara News, and Tempo.
 
@@ -13,5 +13,5 @@ Indonesian news and tech digest MCP server powered by public RSS feeds from CNBC
 ## Running
 
 ```bash
-pnpm --filter @mcp-servers/id-news start
+pnpm --filter @kentandrian/id-news-mcp start
 ```

@@ -1,5 +1,5 @@
 {
-  "name": "@mcp-servers/tokopedia",
+  "name": "@kentandrian/tokopedia-mcp",
   "version": "0.1.0",
   "description": "Tokopedia MCP server powered by Tokopedia's public GraphQL gateway",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\""
   },
   "dependencies": {
-    "@mcp-servers/core": "workspace:*",
+    "@kentandrian/mcp-core": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.25.0",
     "zod": "^3.25.0"
   }

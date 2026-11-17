@@ -1,5 +1,5 @@
 {
-  "name": "@mcp-servers/id-finance",
+  "name": "@kentandrian/id-finance-mcp",
   "version": "0.1.0",
   "description": "Indonesian finance MCP server for Bank Indonesia IDR exchange rates and live IDR crypto prices (Indodax & Pintu)",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\""
   },
   "dependencies": {
-    "@mcp-servers/core": "workspace:*",
+    "@kentandrian/mcp-core": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.25.0",
     "zod": "^3.25.0"
   }

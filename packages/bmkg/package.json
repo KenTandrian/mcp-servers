@@ -1,5 +1,5 @@
 {
-  "name": "@mcp-servers/bmkg",
+  "name": "@kentandrian/bmkg-mcp",
   "version": "0.1.0",
   "description": "BMKG MCP server for Indonesian weather forecasts, earthquake alerts, and region lookup",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\""
   },
   "dependencies": {
-    "@mcp-servers/core": "workspace:*",
+    "@kentandrian/mcp-core": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.25.0",
     "zod": "^3.25.0"
   }

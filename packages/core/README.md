@@ -1,4 +1,4 @@
-# @mcp-servers/core
+# @kentandrian/mcp-core
 
 Shared HTTP retry, TTL caching, and MCP tool response helpers for the `mcp-servers` monorepo.
 

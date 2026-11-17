@@ -1,4 +1,4 @@
-# @mcp-servers/tokopedia
+# @kentandrian/tokopedia-mcp
 
 Tokopedia MCP server powered by Tokopedia's public GraphQL gateway (`gql.tokopedia.com`).
 
@@ -18,11 +18,11 @@ Tokopedia MCP server powered by Tokopedia's public GraphQL gateway (`gql.tokoped
 ## Running
 
 ```bash
-pnpm --filter @mcp-servers/tokopedia start
+pnpm --filter @kentandrian/tokopedia-mcp start
 ```
 
 Or via `npx` once published:
 
 ```bash
-npx -y @mcp-servers/tokopedia
+npx -y @kentandrian/tokopedia-mcp
 ```

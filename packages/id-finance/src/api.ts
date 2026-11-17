@@ -1,4 +1,4 @@
-import { DEFAULT_USER_AGENT, fetchWithRetry, TtlCache } from '@mcp-servers/core';
+import { DEFAULT_USER_AGENT, fetchWithRetry, TtlCache } from '@kentandrian/mcp-core';
 
 export const financeCache = new TtlCache(2 * 60 * 1000, 128);
 

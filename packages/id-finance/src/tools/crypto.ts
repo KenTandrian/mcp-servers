@@ -1,4 +1,4 @@
-import { textResult, withErrorHandling } from '@mcp-servers/core';
+import { textResult, withErrorHandling } from '@kentandrian/mcp-core';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { fetchJson, financeCache } from '../api.js';

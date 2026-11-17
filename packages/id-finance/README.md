@@ -1,4 +1,4 @@
-# @mcp-servers/id-finance
+# @kentandrian/id-finance-mcp
 
 Indonesian finance MCP server providing official Bank Indonesia IDR exchange rates and live IDR cryptocurrency prices from Indodax and Pintu.
 
@@ -13,5 +13,5 @@ Indonesian finance MCP server providing official Bank Indonesia IDR exchange rat
 ## Running
 
 ```bash
-pnpm --filter @mcp-servers/id-finance start
+pnpm --filter @kentandrian/id-finance-mcp start
 ```

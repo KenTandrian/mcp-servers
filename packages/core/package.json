@@ -1,5 +1,5 @@
 {
-  "name": "@mcp-servers/core",
+  "name": "@kentandrian/mcp-core",
   "version": "0.1.0",
   "description": "Shared HTTP, caching, and MCP tool utilities for mcp-servers",
   "license": "MIT",

@@ -12,7 +12,7 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "test:unit": "pnpm -r test:unit",
-    "test:smoke": "pnpm --filter @mcp-servers/tokopedia test:smoke",
+    "test:smoke": "pnpm --filter @kentandrian/tokopedia-mcp test:smoke",
     "test": "pnpm test:unit",
     "clean": "pnpm -r clean"
   },

@@ -1,4 +1,4 @@
-import { DEFAULT_USER_AGENT, fetchWithRetry, TtlCache } from '@mcp-servers/core';
+import { DEFAULT_USER_AGENT, fetchWithRetry, TtlCache } from '@kentandrian/mcp-core';
 
 export const bmkgCache = new TtlCache(5 * 60 * 1000, 256);
 

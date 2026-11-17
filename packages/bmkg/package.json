@@ -2,6 +2,20 @@
   "name": "@kentandrian/bmkg-mcp",
   "version": "0.1.0",
   "description": "BMKG MCP server for Indonesian weather forecasts, earthquake alerts, and region lookup",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "bmkg",
+    "indonesia",
+    "weather",
+    "forecast",
+    "earthquake",
+    "gempa",
+    "cuaca",
+    "wilayah",
+    "southeast-asia"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,10 +26,14 @@
   "bugs": {
     "url": "https://github.com/KenTandrian/mcp-servers/issues"
   },
+  "mcpName": "io.github.KenTandrian/bmkg-mcp",
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "bin": {
     "bmkg-mcp": "./build/index.js"
   },

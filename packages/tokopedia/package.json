@@ -2,6 +2,18 @@
   "name": "@kentandrian/tokopedia-mcp",
   "version": "0.1.0",
   "description": "Tokopedia MCP server powered by Tokopedia's public GraphQL gateway",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "tokopedia",
+    "indonesia",
+    "ecommerce",
+    "marketplace",
+    "shopping",
+    "product-search",
+    "southeast-asia"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,10 +24,14 @@
   "bugs": {
     "url": "https://github.com/KenTandrian/mcp-servers/issues"
   },
+  "mcpName": "io.github.KenTandrian/tokopedia-mcp",
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "bin": {
     "tokopedia-mcp": "./build/index.js"
   },

@@ -2,6 +2,19 @@
   "name": "@kentandrian/id-news-mcp",
   "version": "0.1.0",
   "description": "Indonesian news and tech digest MCP server powered by CNBC Indonesia, Antara, and Tempo RSS feeds",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "indonesia",
+    "news",
+    "berita",
+    "rss",
+    "cnbc-indonesia",
+    "antara",
+    "tempo",
+    "southeast-asia"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,10 +25,14 @@
   "bugs": {
     "url": "https://github.com/KenTandrian/mcp-servers/issues"
   },
+  "mcpName": "io.github.KenTandrian/id-news-mcp",
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "bin": {
     "id-news-mcp": "./build/index.js"
   },

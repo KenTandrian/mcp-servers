@@ -1,0 +1,41 @@
+{
+  "name": "@mcp-servers/id-finance",
+  "version": "0.1.0",
+  "description": "Indonesian finance MCP server for Bank Indonesia IDR exchange rates and live IDR crypto prices (Indodax & Pintu)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KenTandrian/mcp-servers.git",
+    "directory": "packages/id-finance"
+  },
+  "homepage": "https://github.com/KenTandrian/mcp-servers/tree/main/packages/id-finance#readme",
+  "bugs": {
+    "url": "https://github.com/KenTandrian/mcp-servers/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "bin": {
+    "id-finance-mcp": "./build/index.js"
+  },
+  "files": [
+    "build",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node build/index.js",
+    "typecheck": "tsc --noEmit",
+    "test:unit": "tsx --test test/*.test.ts",
+    "test:smoke": "tsx test/smoke.ts",
+    "test": "pnpm test:unit",
+    "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@mcp-servers/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.25.0",
+    "zod": "^3.25.0"
+  }
+}

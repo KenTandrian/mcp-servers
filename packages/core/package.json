@@ -36,6 +36,10 @@
       "default": "./build/index.js"
     }
   },
+  "files": [
+    "build",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",

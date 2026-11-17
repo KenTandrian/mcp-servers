@@ -2,6 +2,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { registerBiKursTools } from './tools/bi-kurs.js';
+import { registerCryptoTools } from './tools/crypto.js';
 
 const server = new McpServer({
   name: 'id-finance-mcp',
@@ -9,6 +10,7 @@ const server = new McpServer({
 });
 
 registerBiKursTools(server);
+registerCryptoTools(server);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);

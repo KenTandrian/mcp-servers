@@ -28,7 +28,10 @@ function decodeEntities(input: string): string {
 function stripTagsAndCdata(raw: string): string {
   const withoutCdata = raw.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1');
   const withoutTags = withoutCdata.replace(/<[^>]+>/g, ' ');
-  return decodeEntities(withoutTags).replace(/\s+/g, ' ').trim();
+  return decodeEntities(withoutTags)
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([.,!?;:])/g, '$1')
+    .trim();
 }
 
 function extractTag(block: string, tag: string): string {

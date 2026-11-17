@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.KenTandrian/bmkg-mcp",
+  "title": "BMKG",
+  "description": "Indonesian weather forecasts, earthquake alerts, and region codes from BMKG",
+  "repository": {
+    "url": "https://github.com/KenTandrian/mcp-servers",
+    "source": "github",
+    "id": "1460287298",
+    "subfolder": "packages/bmkg"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@kentandrian/bmkg-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

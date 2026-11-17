@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.KenTandrian/tokopedia-mcp",
+  "title": "Tokopedia (Unofficial)",
+  "description": "Unofficial Tokopedia product search, shop info, reviews, and categories",
+  "repository": {
+    "url": "https://github.com/KenTandrian/mcp-servers",
+    "source": "github",
+    "id": "1460287298",
+    "subfolder": "packages/tokopedia"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@kentandrian/tokopedia-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

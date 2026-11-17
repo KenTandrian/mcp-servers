@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.KenTandrian/id-news-mcp",
+  "title": "Indonesian News",
+  "description": "Latest Indonesian news from CNBC Indonesia, Antara, and Tempo RSS feeds",
+  "repository": {
+    "url": "https://github.com/KenTandrian/mcp-servers",
+    "source": "github",
+    "id": "1460287298",
+    "subfolder": "packages/id-news"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@kentandrian/id-news-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

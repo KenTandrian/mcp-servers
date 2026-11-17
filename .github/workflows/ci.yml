@@ -16,6 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - name: Check server.json versions match package.json
+        run: |
+          for f in packages/*/server.json; do
+            v=$(jq -r .version "$(dirname "$f")/package.json")
+            jq -e --arg v "$v" '.version == $v and all(.packages[]; .version == $v)' "$f" >/dev/null \
+              || { echo "::error file=$f::version does not match package.json ($v)"; exit 1; }
+          done
+
       - uses: pnpm/action-setup@v6
 
       - uses: actions/setup-node@v7

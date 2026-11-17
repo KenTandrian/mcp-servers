@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.KenTandrian/id-finance-mcp",
+  "title": "Indonesian Finance",
+  "description": "Bank Indonesia IDR exchange rates and live IDR crypto prices from Indodax and Pintu",
+  "repository": {
+    "url": "https://github.com/KenTandrian/mcp-servers",
+    "source": "github",
+    "id": "1460287298",
+    "subfolder": "packages/id-finance"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@kentandrian/id-finance-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

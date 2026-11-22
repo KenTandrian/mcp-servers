@@ -1,6 +1,6 @@
 {
   "name": "@kentandrian/id-finance-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Indonesian finance MCP server for Bank Indonesia IDR exchange rates and live IDR crypto prices (Indodax & Pintu)",
   "keywords": [
     "mcp",

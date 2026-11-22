@@ -67,7 +67,8 @@ export function formatBiKurs(currency: string, rows: BiKursRow[]): string {
     return `No Bank Indonesia exchange rate found for ${currency}.`;
   }
 
-  const latest = rows[rows.length - 1];
+  const sorted = [...rows].sort((a, b) => a.date.localeCompare(b.date));
+  const latest = sorted[sorted.length - 1];
   const perUnitNote = latest.unit !== 1 ? ` (per ${latest.unit} ${latest.currency})` : '';
   const fmt = (n: number) =>
     `Rp${n.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -80,9 +81,9 @@ export function formatBiKurs(currency: string, rows: BiKursRow[]): string {
     `- Mid (Kurs Tengah): ${fmt(latest.mid)}`,
   ];
 
-  if (rows.length > 1) {
+  if (sorted.length > 1) {
     lines.push('', 'Recent history:');
-    for (const r of rows.slice(-5).reverse()) {
+    for (const r of sorted.slice(-5).reverse()) {
       lines.push(`- ${r.date}: Buy ${fmt(r.buy)} | Sell ${fmt(r.sell)} | Mid ${fmt(r.mid)}`);
     }
   }

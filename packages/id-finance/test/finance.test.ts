@@ -31,6 +31,22 @@ describe('id-finance parsers and formatters', () => {
     assert.match(output, /Date: 2026-11-16/);
   });
 
+  it('picks the latest date and orders history newest-first regardless of input order', () => {
+    const descendingRows = [
+      { currency: 'USD', unit: 1, buy: 18177.65, sell: 18360.35, mid: 18269, date: '2026-11-20' },
+      { currency: 'USD', unit: 1, buy: 18160.74, sell: 18343.26, mid: 18252, date: '2026-11-19' },
+      { currency: 'USD', unit: 1, buy: 18126.91, sell: 18309.09, mid: 18218, date: '2026-11-16' },
+    ];
+
+    const output = formatBiKurs('USD', descendingRows);
+    assert.match(output, /Date: 2026-11-20/);
+    const idx20 = output.indexOf('- 2026-11-20:');
+    const idx19 = output.indexOf('- 2026-11-19:');
+    const idx16 = output.indexOf('- 2026-11-16:');
+    assert.ok(idx20 !== -1 && idx19 !== -1 && idx16 !== -1);
+    assert.ok(idx20 < idx19 && idx19 < idx16);
+  });
+
   it('normalizes Indodax and Pintu prices and formats comparison', () => {
     const indodax = normalizeIndodaxTickers({
       btc_idr: {
